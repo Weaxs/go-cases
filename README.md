@@ -1,1 +1,1 @@
-# go-cases
+# wrong cases collection for go language
