@@ -2,35 +2,12 @@
  * Copyright(C) 2023 Weaxs
  */
 
-package go_wrong_cases
+package channel
 
 import (
 	"fmt"
-	"sync"
 	"time"
 )
-
-func case1() {
-	wg := sync.WaitGroup{}
-	ch := make(chan int, 10)
-	for i := 0; i < 10; i++ {
-		ch <- i
-	}
-
-	close(ch)
-
-	wg.Add(4)
-	for j := 0; j < 4; j++ {
-		go func() {
-			for {
-				task := <-ch
-				fmt.Println(task)
-			}
-			wg.Done()
-		}()
-	}
-	wg.Wait()
-}
 
 // case: https://github.com/kubernetes/kubernetes/pull/83925
 func case2() {
